@@ -81,7 +81,7 @@ export const AboutSection = React.forwardRef<any, AboutProps>(
               delay: 0.25,
             }}
           >
-            <Img fixed={image.childImageSharp.fixed} />
+            <Img fixed={image.childImageSharp.fixed} alt="Juan Christian's Portrait" />
           </motion.div>
         </div>
       </>

@@ -63,7 +63,7 @@ export const WorksSection = React.forwardRef<any, WorksProps>(
           <Img
             key={data[currentWorkImage].id}
             fixed={data[currentWorkImage].childImageSharp.fixed}
-            alt='...'
+            alt={currentWorkImage}
           />
         </div>
         <h1 className='mb-24 font-head text-white text-3xl md:text-4xl lg:text-6xl leading-tight'>
