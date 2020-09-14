@@ -1,0 +1,43 @@
+@font-face {
+  font-family: "Monument";
+  src: url("../fonts/MonumentExtended-Ultrabold.otf");
+}
+
+@font-face {
+  font-family: "Axiforma";
+  src: url("../fonts/Axiforma-Regular.ttf");
+}
+
+html {
+  font-family: "Axiforma", sans-serif;
+}
+
+html,
+body {
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+  /* -ms-overflow-style: none; */
+  /* scrollbar-width: none; */
+  height: 100vh;
+  cursor: none;
+  overscroll-behavior-y: none;
+  background: #0a0a0a;
+  scroll-behavior: smooth;
+}
+
+*::selection {
+  color: #0a0a0a;
+  background-color: #fff;
+}
+
+.font-head {
+  font-family: "Monument", sans-serif;
+  font-weight: lighter;
+}
+
+.text-outline {
+  -webkit-text-fill-color: transparent;
+  -webkit-text-stroke: 4px;
+  -webkit-text-stroke-width: 0.1rem;
+  @apply text-white;
+}
