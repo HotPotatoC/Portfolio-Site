@@ -5,6 +5,7 @@ import useWindowSize from "../hooks/useWindowSize";
 import Header from "./Header";
 import Container from "./Container";
 import Cursor from "./Cursor";
+import isBrowser from "../utils/isBrowser";
 
 export const Layout: React.FC<PageProps & {children: React.ReactNode}> = ({
   children,
@@ -33,7 +34,7 @@ export const Layout: React.FC<PageProps & {children: React.ReactNode}> = ({
   };
 
   const skewScrolling = () => {
-    skewConfig.current = window.scrollY;
+    skewConfig.current = isBrowser ? window.scrollY : 0;
     skewConfig.previous +=
       (skewConfig.current - skewConfig.previous) * skewConfig.ease;
     skewConfig.rounded = Math.round(skewConfig.previous * 100) / 100;
