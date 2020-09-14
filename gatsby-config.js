@@ -3,12 +3,18 @@ const tailwindConfig = require("./tailwind.config.js");
 
 const fullConfig = resolveConfig(tailwindConfig);
 
+const siteUrl =
+  process.env.URL ||
+  process.env.DEPLOY_URL ||
+  `https://juanc.netlify.app`;
+
 module.exports = {
   siteMetadata: {
     title: `Juan ☕`,
     titleTemplate: `Juan — %s`,
     description: `Hi, my name is Juan Christian i am a web developer based in Indonesia and this is my portfolio site.`,
     author: `@huanchrist`,
+    siteUrl: siteUrl,
   },
   plugins: [
     `gatsby-plugin-sass`,

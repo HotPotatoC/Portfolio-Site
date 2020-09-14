@@ -7,6 +7,7 @@ interface SEOProps {
   keywords?: string[];
   lang?: string;
   meta?: [];
+  image?: any;
   title: string;
 }
 
@@ -15,9 +16,12 @@ export const SEO: React.FC<SEOProps> = ({
   lang = "en",
   meta = [],
   keywords = [],
+  image,
   title,
 }) => {
   const {site} = useStaticQuery(query);
+  const metaImage =
+    image && image.src ? `${site.siteMetadata.siteUrl}${image.src}` : null;
 
   const metaDescription = description || site.siteMetadata.description;
 
@@ -44,10 +48,6 @@ export const SEO: React.FC<SEOProps> = ({
           content: `website`,
         },
         {
-          name: `twitter:card`,
-          content: `summary`,
-        },
-        {
           name: `twitter:creator`,
           content: site.siteMetadata.author,
         },
@@ -60,6 +60,37 @@ export const SEO: React.FC<SEOProps> = ({
           content: metaDescription,
         },
       ]
+        .concat(
+          metaImage
+            ? [
+                {
+                  property: `og:image`,
+                  content: metaImage,
+                },
+                {
+                  property: `og:image:alt`,
+                  content: title,
+                },
+                {
+                  property: "og:image:width",
+                  content: image.width,
+                },
+                {
+                  property: "og:image:height",
+                  content: image.height,
+                },
+                {
+                  name: `twitter:card`,
+                  content: `summary_large_image`,
+                },
+              ]
+            : [
+                {
+                  name: `twitter:card`,
+                  content: `summary`,
+                },
+              ]
+        )
         .concat(
           keywords.length > 0
             ? {
@@ -85,6 +116,7 @@ const query = graphql`
         titleTemplate
         description
         author
+        siteUrl
       }
     }
   }

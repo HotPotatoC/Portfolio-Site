@@ -8,8 +8,10 @@ import HeadlineSection from "../components/home/HeadlineSection";
 import WorksSection from "../components/home/WorksSection";
 import AboutSection from "../components/home/AboutSection";
 import ContactSection from "../components/home/ContactSection";
+import {graphql, useStaticQuery} from "gatsby";
 
 export const IndexPage: React.FC = () => {
+  const {image} = useStaticQuery(query);
   const [workRef, inWorkView] = useInView({
     threshold: 0.4,
   });
@@ -32,6 +34,7 @@ export const IndexPage: React.FC = () => {
           `web programmer`,
         ]}
         title='Home'
+        image={image.childImageSharp.fixed}
       />
       <div className='flex flex-wrap mt-56'>
         <HeadlineSection />
@@ -44,3 +47,15 @@ export const IndexPage: React.FC = () => {
 };
 
 export default IndexPage;
+
+const query = graphql`
+  query SEOImageQuery {
+    image: file(relativePath: {eq: "me.jpg"}) {
+      childImageSharp {
+        fixed(height: 450, width: 500, grayscale: true, cropFocus: EAST) {
+          ...GatsbyImageSharpFixed
+        }
+      }
+    }
+  }
+`;
