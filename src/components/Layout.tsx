@@ -34,7 +34,7 @@ export const Layout: React.FC<PageProps & {children: React.ReactNode}> = ({
   };
 
   const skewScrolling = () => {
-    skewConfig.current = isBrowser ? window.scrollY : 0;
+    skewConfig.current = isBrowser() ? window.scrollY : 0;
     skewConfig.previous +=
       (skewConfig.current - skewConfig.previous) * skewConfig.ease;
     skewConfig.rounded = Math.round(skewConfig.previous * 100) / 100;
